@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <h2>ioio</h2>
+    <h1>hhh</h1>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
     <router-view/>
   </div>
 </template>
