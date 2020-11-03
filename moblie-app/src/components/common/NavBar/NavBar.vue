@@ -1,9 +1,11 @@
 <template>
   <div class="NavBar">
-    <van-nav-bar border >
-
+    <van-nav-bar :title="theme"  >
+    <template #left>
+        <slot name="nav-left"></slot>
+    </template>
     <template #right>
-        <van-icon name="setting-o" size="26" color="#000000"/>
+        <slot name="nav-right"></slot>
     </template>
     </van-nav-bar>
   </div>
@@ -11,10 +13,15 @@
 
 <script>
 export default {
-    name:"NavBar"
+  name: 'NavBar',
+  props: {
+    theme: {
+      type: String,
+      default: '空白'
+    }
+  }
 }
 </script>
 
 <style>
-
 </style>
