@@ -1,40 +1,60 @@
 package com.reddot.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author Trey
  * @since 2020/11/18
  */
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Order {
     private int id;
-    private int user_id;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private LocalDateTime createTime;
+    private int userId;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date startTime;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date endTime;
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
     private int finished;
-    private int bus_id;
+    private int busId;
     private int assigned;
     private float money;
     private String startLocation;
     private String endLocation;
+    private int passengerNumber;
 
-    public Order() {
-    }
-
-    public Order(int id, int user_id, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime createTime, int finished, int bus_id, int assigned, float money, String startLocation, String endLocation) {
+    public Order(int id, int userId, Date startTime, Date endTime, Date createTime, int finished, int busId, int assigned, float money, String startLocation, String endLocation, int passengerNumber) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.createTime = createTime;
         this.finished = finished;
-        this.bus_id = bus_id;
+        this.busId = busId;
         this.assigned = assigned;
         this.money = money;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
+        this.passengerNumber = passengerNumber;
+    }
+
+    public int getPassengerNumber() {
+        return passengerNumber;
+    }
+
+    public void setPassengerNumber(int passengerNumber) {
+        this.passengerNumber = passengerNumber;
+    }
+
+    public Order() {
     }
 
     public int getId() {
@@ -45,35 +65,35 @@ public class Order {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public LocalDateTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public LocalDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
@@ -85,12 +105,12 @@ public class Order {
         this.finished = finished;
     }
 
-    public int getBus_id() {
-        return bus_id;
+    public int getBusId() {
+        return busId;
     }
 
-    public void setBus_id(int bus_id) {
-        this.bus_id = bus_id;
+    public void setBusId(int busId) {
+        this.busId = busId;
     }
 
     public int getAssigned() {

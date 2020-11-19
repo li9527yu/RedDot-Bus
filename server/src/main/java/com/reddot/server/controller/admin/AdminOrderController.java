@@ -1,9 +1,10 @@
 package com.reddot.server.controller.admin;
 
 import com.reddot.server.domain.ResponseWrapper;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.reddot.server.service.admin.AdminOrderService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @author Trey
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin/order")
 public class AdminOrderController {
-
-    @PutMapping("/{id}")
-    public ResponseWrapper matchBusAndOrder() {
-        return null;
-    }
+    @Resource
+    AdminOrderService service;
+//
+//    @PutMapping("/{order_id}")
+//    public ResponseWrapper assignBus(@PathVariable("order_id") int orderId, @RequestParam("bus_id") int busId) {
+//        return service.assignBus(orderId,busId);
+//    }
 }
