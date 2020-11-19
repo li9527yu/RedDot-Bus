@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 18/11/2020 19:05:49
+ Date: 19/11/2020 21:28:59
 */
 
 SET NAMES utf8mb4;
@@ -26,13 +26,14 @@ CREATE TABLE `bus`  (
   `number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '汽车编号',
   `driver_id` int(11) NULL DEFAULT NULL,
   `status` int(255) NULL DEFAULT NULL COMMENT '0为维护中，1为可使用',
+  `type` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus
 -- ----------------------------
-INSERT INTO `bus` VALUES (1, '津A1234', 2, 1);
+INSERT INTO `bus` VALUES (1, '津A1234', 2, 1, NULL);
 
 -- ----------------------------
 -- Table structure for order
@@ -40,21 +41,28 @@ INSERT INTO `bus` VALUES (1, '津A1234', 2, 1);
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `start_time` datetime(0) NULL COMMENT '下单时间',
+  `user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户id',
+  `start_time` datetime(0) NOT NULL COMMENT '出发时间',
   `end_time` datetime(0) NULL DEFAULT NULL COMMENT '完成时间',
-  `finished` tinyint(3) NOT NULL COMMENT '0没完成，1完成',
-  `bus_id` bigint(20) NULL DEFAULT 0 COMMENT '车辆id',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '订单创建时间',
+  `finished` tinyint(3) UNSIGNED ZEROFILL NOT NULL DEFAULT 000 COMMENT '0没完成，1完成',
+  `bus_id` bigint(20) NULL DEFAULT NULL COMMENT '车辆id',
   `assigned` tinyint(3) NULL DEFAULT 0 COMMENT '0未分配，1已分配',
-  `money` float(11) NULL DEFAULT 1 COMMENT '支付金额',
+  `money` float(11, 0) NULL DEFAULT 1 COMMENT '支付金额',
   `start_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `end_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `passenger_number` int(100) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
+INSERT INTO `order` VALUES (1, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11);
+INSERT INTO `order` VALUES (2, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11);
+INSERT INTO `order` VALUES (3, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:58:37', 000, 0, 0, 2, '天津', '北京', 11);
+INSERT INTO `order` VALUES (4, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:59:59', 001, 0, 0, 3, '天津', '北京', 11);
+INSERT INTO `order` VALUES (5, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 21:07:49', 001, 0, 0, 3, '天津', '北京', 11);
 
 -- ----------------------------
 -- Table structure for user
@@ -67,7 +75,7 @@ CREATE TABLE `user`  (
   `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `type` tinyint(3) NULL DEFAULT NULL COMMENT '0为用户，1为司机，2为管理员',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
