@@ -1,0 +1,1 @@
+<view><view><text>{{"用车时间："+acceptData.time}}</text><text>{{"出发点："+acceptData.start}}</text><text>{{"目的地："+acceptData.end}}</text></view><view></view><view><view><text>金额：</text></view><view><button data-event-opts="{{[['tap',[['payFor',['$event']]]]]}}" bindtap="__e">确认支付</button></view></view></view>
