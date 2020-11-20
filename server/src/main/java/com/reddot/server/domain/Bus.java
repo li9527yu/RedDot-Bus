@@ -3,12 +3,14 @@ package com.reddot.server.domain;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import java.io.Serializable;
+
 /**
  * @author Trey
  * @since 2020/11/18
  */
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Bus {
+public class Bus implements Serializable {
     private int id;
     private String number;
     private int driverId;

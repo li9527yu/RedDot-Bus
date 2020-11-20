@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Order {
+public class Order implements Serializable {
     private int id;
     private int userId;
     @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")

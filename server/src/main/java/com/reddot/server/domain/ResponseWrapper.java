@@ -3,6 +3,8 @@ package com.reddot.server.domain;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import java.io.Serializable;
+
 /**
  * 响应信息包装类
  *
@@ -10,11 +12,11 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
  * @since 2020/11/18
  */
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ResponseWrapper {
+public class ResponseWrapper implements Serializable {
     private int statusCode;//200 or 500
-    private String message;
+    private Object message;
 
-    public ResponseWrapper(int statusCode, String message) {
+    public ResponseWrapper(int statusCode, Object message) {
         this.statusCode = statusCode;
         this.message = message;
     }
@@ -27,7 +29,7 @@ public class ResponseWrapper {
         this.statusCode = statusCode;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
