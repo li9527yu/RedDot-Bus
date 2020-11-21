@@ -53,5 +53,9 @@
       "desc": "1212"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant/button/index",
+    "van-cell": "/wxcomponents/cell/index",
+    "van-cell-group": "/wxcomponents/cell-group/index"
+  }
 }

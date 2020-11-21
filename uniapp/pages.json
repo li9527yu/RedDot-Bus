@@ -114,6 +114,11 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#0faeff",
-		"backgroundColor": "#fbf9fe"
+		"backgroundColor": "#fbf9fe",
+		"usingComponents":{
+			"van-button":"/wxcomponents/vant/button/index",
+			"van-cell": "/wxcomponents/cell/index",
+		  "van-cell-group": "/wxcomponents/cell-group/index"
+		}
 	}
 }
