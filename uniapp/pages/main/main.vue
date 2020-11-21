@@ -18,7 +18,7 @@
 					<input type="text" focus  placeholder="输入终点"  @input="end_location"/>
 				<!-- </navigator>			 -->
 				<button form-type="submit" @click="confirmInfo">下单</button>
-				
+				<van-button type="primary" size="large" block>确定</van-button>
 			</form>
 		</view>
 	</view>

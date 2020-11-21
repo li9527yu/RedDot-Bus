@@ -2,7 +2,6 @@ package com.reddot.server.dao;
 
 import com.reddot.server.domain.Order;
 import com.reddot.server.domain.User;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
