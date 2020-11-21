@@ -1,21 +1,23 @@
 package com.reddot.server.domain;
 
+import java.io.Serializable;
+
 /**
  * @author Trey
  * @since 2020/11/18
  */
 
-public class User {
+public class User implements Serializable {
     private int id;
     private String username;
     private String password;
     private String salt;
-    private int type;
+    private byte type;
 
     public User() {
     }
 
-    public User(int id, String username, String password, String salt, int type) {
+    public User(int id, String username, String password, String salt, byte type) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -55,11 +57,11 @@ public class User {
         this.salt = salt;
     }
 
-    public int getType() {
+    public byte getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(byte type) {
         this.type = type;
     }
 }
