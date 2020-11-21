@@ -1,18 +1,12 @@
 package com.reddot.server.config;
 
-/**
- * @author Trey
- * @since 2020/11/20
- */
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
- * @Auther: liaoshiyao
- * @Date: 2019/1/11 11:49
- * @Description: 配置类
+ * @author Trey
+ * @since 2020/11/20
  */
 @Component
 public class WebSocketConfig {
@@ -24,8 +18,8 @@ public class WebSocketConfig {
      *
      * @return
      */
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter() {
-        return new ServerEndpointExporter();
-    }
+//    @Bean
+//    public ServerEndpointExporter serverEndpointExporter() {
+//        return new ServerEndpointExporter();
+//    }
 }
