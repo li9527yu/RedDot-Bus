@@ -1,3 +1,4 @@
+server.servlet.context-path: /api
 server:
   port: 8888
 spring:
@@ -17,7 +18,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: mb
     password: 1123
-    url: jdbc:mysql://papawq.xyz:3306/reddot
+    url: jdbc:mysql://papawq.xyz:3306/reddot?allowPublicKeyRetrieval=true
 
 mybatis:
   configuration:

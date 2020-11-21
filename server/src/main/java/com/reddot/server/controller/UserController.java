@@ -20,12 +20,16 @@ public class UserController {
     UserService service;
 
     @PostMapping("/login")
-    public ResponseWrapper login(String username,String password) {
-        return service.login(username, password);
+    public ResponseWrapper login(@RequestBody User user) {
+        return service.login(user.getUsername(), user.getPassword());
     }
 
     @PostMapping("/register")
     public ResponseWrapper register(@RequestBody User user) {
         return service.register(user);
+    }
+    @GetMapping("test")
+    public String name() {
+        return "hhhh";
     }
 }

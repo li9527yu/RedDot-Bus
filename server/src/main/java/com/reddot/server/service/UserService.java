@@ -18,7 +18,7 @@ public class UserService {
     UserMapper userMapper;
 
     public ResponseWrapper login(String username, String password) {
-        if (isExist(username))
+        if (!isExist(username))
             return new ResponseWrapper(500, "用户不存在");
         User user = userMapper.login(username, password);
         if (user.getPassword().equals(password)) {
