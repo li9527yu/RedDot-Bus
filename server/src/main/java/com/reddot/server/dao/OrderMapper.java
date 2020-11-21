@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Insert("INSERT INTO `order` (user_id,start_location,end_location,bus_id,money,start_time,passenger_number) VALUES (#{userId},#{startLocation},#{endLocation},#{bus_id},#{money},#{startTime},#{passengerNumber})")
+    @Insert("INSERT INTO `order` (user_id,start_location,end_location,bus_id,money,start_time,passenger_number,token) VALUES (#{userId},#{startLocation},#{endLocation},#{busId},#{money},#{startTime},#{passengerNumber},#{token})")
     boolean createOrder(Order order);
 
     @Select("SELECT * FROM `order` WHERE user_id=#{userId} AND finished=0")
@@ -29,6 +29,6 @@ public interface OrderMapper {
     @Update("UPDATE `order` SET bus_Id=#{busId} WHERE order_Id=#{orderId}")
     boolean setBusId(int orderId,int busId);
 
-    @Update("UPDATE `order` SET finished=1 WHERE id=#{orderId}")
-    boolean completeOrder(int orderId);
+    @Update("UPDATE `order` SET finished=1 WHERE token=#{token}")
+    boolean completeOrder(String token);
 }
