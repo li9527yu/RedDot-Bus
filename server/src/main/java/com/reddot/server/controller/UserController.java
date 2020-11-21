@@ -19,7 +19,7 @@ public class UserController {
     @Resource
     UserService service;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseWrapper login(String username,String password) {
         return service.login(username, password);
     }

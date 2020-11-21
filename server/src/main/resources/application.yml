@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8888
 spring:
   redis:
     timeout: 1000
@@ -15,9 +15,9 @@ spring:
     database: 0
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/reddotbus
+    username: mb
+    password: 1123
+    url: jdbc:mysql://papawq.xyz:3306/reddot
 
 mybatis:
   configuration:
