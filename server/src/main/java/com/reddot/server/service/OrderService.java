@@ -50,4 +50,8 @@ public class OrderService {
         }
         return new ResponseWrapper(500, "操作失败");
     }
+
+    public List<Order> getAll() {
+        return mapper.getAllOrders();
+    }
 }

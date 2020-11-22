@@ -1,7 +1,6 @@
 package com.reddot.server.dao;
 
 import com.reddot.server.domain.Order;
-import com.reddot.server.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -30,4 +29,7 @@ public interface OrderMapper {
 
     @Update("UPDATE `order` SET finished=1 WHERE token=#{token}")
     boolean completeOrder(String token);
+
+    @Select("SELECT * FROM `order`")
+    List<Order> getAllOrders();
 }

@@ -6,7 +6,7 @@
       <el-table :data="tableData" style="width: 100%" stripe>
         <el-table-column prop="id" label="编号" width="50">
         </el-table-column>
-        <el-table-column prop="created_time" label="创建时间" width="150">
+        <el-table-column prop="create_time" label="创建时间" width="150">
         </el-table-column>
         <el-table-column prop="start_time" label="出行时间" width="160">
         </el-table-column>
@@ -18,89 +18,26 @@
         </el-table-column>
         <el-table-column prop="assigned" label="分配状态" width="90">
         </el-table-column>
-        <el-table-column label="分配">
-          <el-button>点击随机分配车辆</el-button>
-        </el-table-column>
       </el-table>
     </el-col>
   </div>
 </template>
 
 <script>
-const axios = require('axios').default;
+import service from "@/utils/request";
 export default {
-  created() {
-    axios.get('/orders')
-    .then(function (res) {
-      console.log(res.data)
-    })
+  mounted() {
+    console.log("loading");
+    service
+      .get('/order/all')
+      .then((res) => {
+        console.log(res.data)
+        this.tableData = res.data.message
+      })
   },
   data() {
     return {
       tableData: [
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
-        {
-          id: "1",
-          created_time: "2020-03-05 18:00:00",
-          start_time: "2020-03-05 18:00:00",
-          start_location: "上海市普陀区金沙江路 1518 弄",
-          end_location: "上海市普陀区金沙江路 1518 弄",
-          money: "￥30",
-          assigned: "未分配"
-        },
       ],
     };
   },

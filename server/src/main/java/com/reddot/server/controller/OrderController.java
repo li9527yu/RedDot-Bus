@@ -47,4 +47,9 @@ public class OrderController {
     public ResponseWrapper completeOrder(@RequestParam String token) {
         return orderService.completeOrder(token);
     }
+
+    @GetMapping("all")
+    public ResponseWrapper allOrder() {
+        return new ResponseWrapper(200, orderService.getAll());
+    }
 }
