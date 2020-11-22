@@ -5,8 +5,7 @@
             <scroll-view scroll-y="true" class="option" v-show="IsOption">
                 <view class='column_item' v-for='(item,index) in data' :key='index' @click="tapOption(item)" >{{item.title}}</view>
             </scroll-view>
-			
-				<button  @click="backInfo" class="backTo">确定</button>
+			<van-button type="primary" size="normal" block @click="backInfo" color="#0faeff">确定</van-button>
         </view>
         <view >
             <view class="page-section page-section-gap">
@@ -33,6 +32,7 @@
     export default {
         data() {
             return {
+				selectType:'',
                 data:[],
                 IsOption:false,
                 searchKey:"",
@@ -56,7 +56,7 @@
                     }],
             }
         },
-        onLoad() {
+        onLoad(option) {
             self = this
             self.mapCtx = wx.createMapContext('myMap')
             self.getAuthorizeInfo()
@@ -64,7 +64,8 @@
                  qqmapsdk = new QQMapWX({
                             key: 'BRNBZ-KY7Y4-FXYUP-X3KHF-XK5CT-FTBKZ'
                         });
-                    
+						
+			this.selectType=option.type;       
         },
         methods: {
                 bindChange:function(e){
@@ -139,6 +140,7 @@
                                   scope: 'scope.userLocation',
                                   success() { // 允许授权
                                       self.getLocationInfo();
+									  console.log("success")
                                   },
                                   fail(){    // 拒绝授权
                                       self.openConfirm();
@@ -215,23 +217,22 @@
                     
                 },
 				backInfo(){
-					// console.log(this.searchKey)
-					// let that=this;
-					// var search_start=JSON.stringify(that.searchKey);
-					
-					// // console.log(this.submitForm);
-					// // console.log(search_start)
-					// uni.navigateTo({
-					// 	// url:'/pages/main/main?backData='+search_start
-						
-					// })
-					let pages = getCurrentPages();  //获取所有页面栈实例列表
-					let nowPage = pages[ pages.length - 1];  //当前页页面实例
-					let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
-					prevPage.$vm.submitForm.slocation = this.searchKey;   //修改上一页data里面的searchVal参数值为1211
-					uni.navigateBack({  //uni.navigateTo跳转的返回，默认1为返回上一级
-						delta: 1
-					});
+					if(this.selectType=='start'){
+						uni.setStorage({
+							key:"start_item",
+							data:this.searchKey
+						})
+					}
+					else if(this.selectType=='end')
+					{
+						uni.setStorage({
+							key:"end_item",
+							data:this.searchKey
+						})
+					}
+					uni.switchTab({
+						url:'../main/main'
+					})
 				}
         }
     }
