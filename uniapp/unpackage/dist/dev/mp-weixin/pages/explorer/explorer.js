@@ -125,20 +125,40 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/Code_Me/Webman/busInto/RedDot-Bus/uniapp/pages/explorer/explorer.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var carousel = function carousel() {__webpack_require__.e(/*! require.ensure | components/vear-carousel/vear-carousel */ "components/vear-carousel/vear-carousel").then((function () {return resolve(__webpack_require__(/*! ../../components/vear-carousel/vear-carousel.vue */ 119));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+{
+  components: {
+    carousel: carousel },
+
+  data: function data() {
+    return {
+      imgList: [{
+        url: 'http://p1.music.126.net/kHjxtEBJBVaP7LarvXBHzg==/109951165487221583.jpg?imageView&quality=89',
+        id: 1 },
+      {
+        url: 'http://p1.music.126.net/uyp9_L3i1VNKIqiCSvDBfQ==/109951165487249974.jpg?imageView&quality=89',
+        id: 2 },
+      {
+        url: 'http://p1.music.126.net/phMJS0iQqwQOM8IuI2nAWg==/109951165486875236.jpg?imageView&quality=89',
+        id: 3 },
+      {
+        url: 'http://p1.music.126.net/xAgh9mDbpEPAXas0JyUTSw==/109951165487249529.jpg?imageView&quality=89',
+        id: 4 }] };
+
+
+  },
+  methods: {
+    selectedBanner: function selectedBanner(item, index) {
+      console.log('🥒', item, index);
+    } } };exports.default = _default;
 
 /***/ })
 

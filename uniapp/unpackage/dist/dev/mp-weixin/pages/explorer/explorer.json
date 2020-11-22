@@ -1,5 +1,7 @@
 {
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "发现",
-  "usingComponents": {}
+  "usingComponents": {
+    "carousel": "/components/vear-carousel/vear-carousel"
+  }
 }

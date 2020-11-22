@@ -1,1 +1,1 @@
-<view></view>
+<carousel vue-id="150af060-1" img-list="{{imgList}}" url-key="url" data-event-opts="{{[['^selected',[['selectedBanner']]]]}}" bind:selected="__e" bind:__l="__l"></carousel>

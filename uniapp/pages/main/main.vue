@@ -36,6 +36,7 @@
 				</van-cell-group>
 				<van-button type="primary" size="normal" block @click="confirmInfo" color="#0faeff">确定</van-button>
 				<van-popup :show="ConfirmOR" @close="ConfirmClose">请先选择时间，地点！</van-popup>
+				<!-- <van-dialog></van-dialog> -->
 			</form>
 		</view>
 	</view>
@@ -196,15 +197,15 @@
 				let that=this;
 				var submitForm=JSON.stringify(that.submitForm);
 				console.log(this.submitForm);
-				// if(this.submitForm){
+				if(this.submitForm.elocation&&this.submitForm.slocation&&this.submitForm.timeValue){
 					uni.navigateTo({
 						url:'/pages/payment/payment?submitData='+submitForm
 					})
-				// }
-				// else{
-				// 	this.ConfirmOR=true;
-				// 	// console.log("err");
-				// }
+				}
+				else{
+					this.ConfirmOR=true;
+					console.log("err");
+				}
 				
 			},
 			ConfirmClose(){

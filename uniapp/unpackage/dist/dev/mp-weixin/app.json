@@ -58,6 +58,7 @@
     "van-datetime-picker": "/wxcomponents/vant/datetime-picker/index",
     "van-popup": "/wxcomponents/vant/popup/index",
     "van-cell": "wxcomponents/vant/cell/index",
-    "van-field": "wxcomponents/vant/field/index"
+    "van-field": "wxcomponents/vant/field/index",
+    "van-dialog": "wxcomponents/vant/dialog/index"
   }
 }
