@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 19/11/2020 21:28:59
+ Date: 21/11/2020 10:22:13
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `bus`  (
   `status` int(255) NULL DEFAULT NULL COMMENT '0为维护中，1为可使用',
   `type` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bus
@@ -52,17 +52,20 @@ CREATE TABLE `order`  (
   `start_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `end_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `passenger_number` int(100) NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '电子票据字段',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (1, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11);
-INSERT INTO `order` VALUES (2, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11);
-INSERT INTO `order` VALUES (3, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:58:37', 000, 0, 0, 2, '天津', '北京', 11);
-INSERT INTO `order` VALUES (4, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:59:59', 001, 0, 0, 3, '天津', '北京', 11);
-INSERT INTO `order` VALUES (5, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 21:07:49', 001, 0, 0, 3, '天津', '北京', 11);
+INSERT INTO `order` VALUES (1, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11, NULL);
+INSERT INTO `order` VALUES (2, 2, '2020-11-10 20:40:50', NULL, '2020-11-04 20:40:47', 000, 0, 0, 9, 'uguyi', '90u87t8gy', 11, NULL);
+INSERT INTO `order` VALUES (3, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:58:37', 000, 0, 0, 2, '天津', '北京', 11, NULL);
+INSERT INTO `order` VALUES (4, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 20:59:59', 001, 0, 0, 3, '天津', '北京', 11, NULL);
+INSERT INTO `order` VALUES (5, 1, '2018-09-18 18:11:11', NULL, '2020-11-19 21:07:49', 001, 0, 0, 3, '天津', '北京', 11, NULL);
+INSERT INTO `order` VALUES (6, 1, '2018-09-18 18:11:11', NULL, '2020-11-21 09:57:20', 000, 8, 0, 3, '天津', '北京', 0, NULL);
+INSERT INTO `order` VALUES (7, 1, '2018-09-18 18:11:11', NULL, '2020-11-21 10:09:39', 001, 8, 0, 3, '天津', '北京', 0, '1db9eb27-a51d-4119-8428-b247862cdbce');
 
 -- ----------------------------
 -- Table structure for user
@@ -75,7 +78,7 @@ CREATE TABLE `user`  (
   `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `type` tinyint(3) NULL DEFAULT NULL COMMENT '0为用户，1为司机，2为管理员',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -83,5 +86,6 @@ CREATE TABLE `user`  (
 INSERT INTO `user` VALUES (1, 'testuser', '123456', NULL, 0);
 INSERT INTO `user` VALUES (2, 'testdriver', '123456', NULL, 1);
 INSERT INTO `user` VALUES (3, 'testadmin', '123456', NULL, 2);
+INSERT INTO `user` VALUES (4, 'test111', '123456', NULL, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 订单业务层
@@ -29,7 +26,7 @@ public class OrderService {
     OrderMapper mapper;
 
     public ResponseWrapper createOrder(Order order) {
-        order.setCreateTime(new Date());
+        order.setToken(UUID.randomUUID().toString());
         if (mapper.createOrder(order)) {
             return new ResponseWrapper(200, "订单创建成功");
         }
@@ -47,10 +44,14 @@ public class OrderService {
         return map;
     }
 
-    public ResponseWrapper completeOrder(int orderId) {
-        if (mapper.completeOrder(orderId)) {
+    public ResponseWrapper completeOrder(String token) {
+        if (mapper.completeOrder(token)) {
             return new ResponseWrapper(200, "大功告成！");
         }
         return new ResponseWrapper(500, "操作失败");
+    }
+
+    public List<Order> getAll() {
+        return mapper.getAllOrders();
     }
 }

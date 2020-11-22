@@ -7,7 +7,7 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>修改密码</el-dropdown-item>
               <el-dropdown-item>个人信息</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="exit()">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <span>{{user}}</span>
@@ -20,24 +20,26 @@
               <el-menu-item-group>
                 <template slot="title">用户订单</template>
                   <router-link to="order" tag="div">
-                <el-menu-item index="1-1">
-                    未分配订单
-                </el-menu-item>
+                    <el-menu-item index="1-1">
+                        未分配订单
+                    </el-menu-item>
                   </router-link>
                   <router-link tag="div" to="history_order">
-                <el-menu-item index="1-2">历史订单</el-menu-item>
+                    <el-menu-item index="1-2">历史订单</el-menu-item>
                   </router-link>
               </el-menu-item-group>
-              <el-menu-item-group title="车辆管控">
-                <el-menu-item index="1-3">车辆实时状态</el-menu-item>
+                <el-menu-item-group title="车辆管控">
+                <template slot="title">车辆监控</template>
+                <el-menu-item index="2-1">实时状态</el-menu-item>
+                <router-link tag="div" to="addbus">
+                  <el-menu-item index="2-2">添加车辆</el-menu-item>
+                </router-link>
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title"><i class="el-icon-menu"></i>公司管理</template>
               <el-menu-item-group>
-                <template slot="title">车辆监控</template>
-                <el-menu-item index="2-1">选项1</el-menu-item>
-                <el-menu-item index="2-2">选项2</el-menu-item>
+                
               </el-menu-item-group>
               <el-menu-item-group title="分组2">
                 <el-menu-item index="2-3">选项3</el-menu-item>
@@ -94,16 +96,26 @@ export default {
   components: {
   },
   data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
-      return {
-        tableData: Array(20).fill(item),
-        user: "管理员"
-      }
+    const item = {
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    };
+    return {
+      tableData: Array(20).fill(item),
+      user: "管理员"
     }
+  },
+  methods: {
+    exit() {
+      this.$store.commit("account/reLogin");
+      window.sessionStorage.clear();
+
+      this.$router.push("/login").then(() => {
+        this.$message.success("已注销");
+      });
+    }
+  }
 }
 </script>
 

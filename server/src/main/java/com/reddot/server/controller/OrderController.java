@@ -26,6 +26,7 @@ public class OrderController {
     @Resource
     OrderService orderService;
 
+    //用户下单接口
     @PostMapping("/create")
     public ResponseWrapper createOrder(@RequestBody Order order) {
         return orderService.createOrder(order);
@@ -41,8 +42,14 @@ public class OrderController {
         return orderService.getAll(userId);
     }
 
-    @GetMapping("/complete/{order_id}")
-    public ResponseWrapper completeOrder(@PathVariable("order_id") int orderId) {
-        return orderService.completeOrder(orderId);
+    //司机验票接口
+    @GetMapping("/complete")
+    public ResponseWrapper completeOrder(@RequestParam String token) {
+        return orderService.completeOrder(token);
+    }
+
+    @GetMapping("all")
+    public ResponseWrapper allOrder() {
+        return new ResponseWrapper(200, orderService.getAll());
     }
 }

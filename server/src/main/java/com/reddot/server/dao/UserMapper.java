@@ -15,12 +15,10 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT id,username,password FROM `user` WHERE `username`=#{username}")
-    User login(String username, String password);
 
     @Insert("INSERT INTO `user` (username,password,type) VALUES (#{username},#{password},#{type})")
     boolean register(User user);
 
-    @Select("SELECT id FROM `user` WHERE `username`=#{username}")
-    List<User> isExist(String username);
+    @Select("SELECT * FROM `user` WHERE `username`=#{username}")
+    List<User> getUsersByUsername(String username);
 }

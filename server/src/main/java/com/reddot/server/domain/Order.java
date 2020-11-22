@@ -31,8 +31,12 @@ public class Order implements Serializable {
     private String startLocation;
     private String endLocation;
     private int passengerNumber;
+    private String token;
 
-    public Order(int id, int userId, Date startTime, Date endTime, Date createTime, int finished, int busId, int assigned, float money, String startLocation, String endLocation, int passengerNumber) {
+    public Order() {
+    }
+
+    public Order(int id, int userId, Date startTime, Date endTime, Date createTime, int finished, int busId, int assigned, float money, String startLocation, String endLocation, int passengerNumber, String token) {
         this.id = id;
         this.userId = userId;
         this.startTime = startTime;
@@ -45,17 +49,7 @@ public class Order implements Serializable {
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.passengerNumber = passengerNumber;
-    }
-
-    public int getPassengerNumber() {
-        return passengerNumber;
-    }
-
-    public void setPassengerNumber(int passengerNumber) {
-        this.passengerNumber = passengerNumber;
-    }
-
-    public Order() {
+        this.token = token;
     }
 
     public int getId() {
@@ -144,5 +138,21 @@ public class Order implements Serializable {
 
     public void setEndLocation(String endLocation) {
         this.endLocation = endLocation;
+    }
+
+    public int getPassengerNumber() {
+        return passengerNumber;
+    }
+
+    public void setPassengerNumber(int passengerNumber) {
+        this.passengerNumber = passengerNumber;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -19,13 +19,17 @@ public class UserController {
     @Resource
     UserService service;
 
-    @GetMapping("/login")
-    public ResponseWrapper login(String username,String password) {
-        return service.login(username, password);
+    @PostMapping("/login")
+    public ResponseWrapper login(@RequestBody User user) {
+        return service.login(user.getUsername(), user.getPassword());
     }
 
     @PostMapping("/register")
     public ResponseWrapper register(@RequestBody User user) {
         return service.register(user);
+    }
+    @GetMapping("test")
+    public String name() {
+        return "hhhh";
     }
 }
