@@ -2,7 +2,7 @@
 	<view class="s-page-wrapper is-100vh">
 		<view class="is-33vh has-mgt-10">
 			<view class="is-flex is-column is-justify-center  is-align-center is-height-100">
-				<image src="../../static/img/common/logo.jpg" mode="aspectFit" class="logoimg"></image>
+				<!-- <image src="../../static/img/common/logo.jpg" mode="aspectFit" class="logoimg"></image> -->
 			</view>
 		</view>
 		<view class="registercontent">
