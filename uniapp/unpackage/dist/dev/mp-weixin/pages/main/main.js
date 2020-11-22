@@ -164,44 +164,100 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 
 
 
 {
   data: function data() {
-    var currentDate = this.getDate({
-      format: true });
-
     return {
       submitForm: {
         slocation: '',
         elocation: '',
-        date: currentDate } };
+        timeValue: '' },
 
-
+      showOR: false,
+      ConfirmOR: false,
+      minDate: new Date(new Date().getFullYear(), 0, 1).getTime(),
+      maxDate: new Date(new Date().getFullYear() + 1, 10, 1).getTime(),
+      currentDate: new Date().getTime(),
+      changeDate: new Date().getTime() };
 
   },
-  computed: {
-    // mapState(['forcedLogin', 'hasLogin', 'userName']),
-    startDate: function startDate() {
-      return this.getDate('start');
-    },
-    endDate: function endDate() {
-      return this.getDate('end');
-    } },
-
   onShow: function onShow() {
+    var that = this;
+    uni.getStorage({
+      key: "start_item",
+      success: function success(res) {
+        that.submitForm.slocation = res.data;
+        // that.$forceUpdate()
+        console.log(res.data);
+      },
+      fail: function fail(err) {
+        console.log(err.data);
+      } });
 
-    console.log(this.submitForm);
+    uni.removeStorage({
+      key: 'start_item',
+      success: function success(res) {
+        console.log('success');
+      } });
+
+    uni.getStorage({
+      key: "end_item",
+      success: function success(res) {
+        that.submitForm.elocation = res.data;
+        // that.$forceUpdate()
+        console.log(res.data);
+      },
+      fail: function fail(err) {
+        console.log(err.data);
+      } });
+
+    uni.removeStorage({
+      key: 'end_item',
+      success: function success(res) {
+        console.log('success');
+      } });
+
+
+    // console.log(this.submitForm)
   },
-  onLoad: function onLoad(option) {var _this = this;
-    // let that=this
-    // that.submitForm.slocation=JSON.parse(options.backData)
+  onLoad: function onLoad() {var _this = this;
+    // console.log(this.minDate)
+    // console.log(this.maxDate)
+    // console.log(this.currentDate)
+    // this.timeFormate(new Date())
 
-    // var backInfo_start=JSON.parse(option.backData)
-    // console.log(backInfo_start)
+    uni.removeStorage({
+      key: 'start_item',
+      success: function success(res) {
+        console.log('success');
+      } });
+
+    uni.removeStorage({
+      key: 'end_item',
+      success: function success(res) {
+        console.log('success');
+      } });
+
 
     var loginType = uni.getStorageSync('login_type');
     if (loginType === 'local') {
@@ -275,42 +331,70 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function ownKeys(object, enumerab
         } });
 
     },
-    getDate: function getDate(type) {
-      var date = new Date();
-      var year = date.getFullYear();
-      var month = date.getMonth() + 1;
-      var day = date.getDate();
-
-      if (type === 'start') {
-        year = year;
-      } else if (type === 'end') {
-        year = year + 1;
-      }
-      month = month > 9 ? month : '0' + month;;
-      day = day > 9 ? day : '0' + day;
-      return "".concat(year, "-").concat(month, "-").concat(day);
-    },
-    bindDateChange: function bindDateChange(e) {
-      this.submitForm.date = e.target.value;
-    },
-    start_location: function start_location(e) {
-      // console.log(e.detail);
-      this.submitForm.slocation = e.detail.value;
-    },
-    end_location: function end_location(e) {
-      // console.log(e.detail);
-      this.submitForm.elocation = e.detail.value;
-    },
     confirmInfo: function confirmInfo() {
       var that = this;
       var submitForm = JSON.stringify(that.submitForm);
-      // console.log(this.submitForm);
+      console.log(this.submitForm);
+      // if(this.submitForm){
       uni.navigateTo({
         url: '/pages/payment/payment?submitData=' + submitForm });
 
-      // console.log(this.submitForm.elocation)
-      // console.log(this.submitForm.slocation)
-      // console.log(this.submitForm.date)
+      // }
+      // else{
+      // 	this.ConfirmOR=true;
+      // 	// console.log("err");
+      // }
+
+    },
+    ConfirmClose: function ConfirmClose() {
+      this.ConfirmOR = false;
+    },
+    showPopup: function showPopup() {
+      this.showOR = true;
+    },
+    onClose: function onClose() {
+      this.showOR = false;
+    },
+    changeTime: function changeTime(time) {
+      if (time) {
+        var oDate = new Date(time * 1),
+        oYear = oDate.getFullYear(),
+        oMonth = oDate.getMonth() + 1,
+        oDay = oDate.getDate(),
+
+        oTime =
+        oYear +
+        "-" +
+        this.getBz(oMonth) +
+        "-" +
+        this.getBz(oDay);
+
+        return oTime;
+      } else {
+        return "";
+      }
+    },
+    //补0
+    getBz: function getBz(num) {
+      if (parseInt(num) < 10) {
+        num = "0" + num;
+      }
+      return num;
+    },
+    confirmFn: function confirmFn(e) {
+      this.submitForm.timeValue = this.changeTime(e.mp.detail);
+      this.showOR = false;
+    },
+    cancelFn: function cancelFn() {
+      this.showOR = false;
+    },
+    formatter: function formatter(type, value) {
+      if (type === 'year') {
+        return "".concat(value, "\u5E74");
+      } else if (type === 'month') {
+        return "".concat(value, "\u6708");
+      }
+      return value;
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 19)["default"]))
 

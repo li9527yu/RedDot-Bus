@@ -66,6 +66,10 @@
             }
             
         },
+		// {
+		// 	"path":"pages/OrderTime/OrderTime"
+			
+		// },
 		{
             "path" : "pages/show-map/ShowMap",
             "style" :                                                                                    
@@ -117,8 +121,12 @@
 		"backgroundColor": "#fbf9fe",
 		"usingComponents":{
 			"van-button":"/wxcomponents/vant/button/index",
-			"van-cell": "/wxcomponents/cell/index",
-		  "van-cell-group": "/wxcomponents/cell-group/index"
+			"van-datetime-picker": "/wxcomponents/vant/datetime-picker/index",
+			"van-popup":"/wxcomponents/vant/popup/index",
+			"van-cell":"wxcomponents/vant/cell/index",
+			"van-field": "wxcomponents/vant/field/index"
+			
+			
 		}
 	}
 }

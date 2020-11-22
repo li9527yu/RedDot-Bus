@@ -156,7 +156,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 // 引入SDK核心类
 var QQMapWX = __webpack_require__(/*! ../../common/qqmap/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js */ 77);
@@ -165,6 +164,7 @@ var self;var _default =
 {
   data: function data() {
     return {
+      selectType: '',
       data: [],
       IsOption: false,
       searchKey: "",
@@ -188,7 +188,7 @@ var self;var _default =
 
 
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad(option) {
     self = this;
     self.mapCtx = wx.createMapContext('myMap');
     self.getAuthorizeInfo();
@@ -197,6 +197,7 @@ var self;var _default =
       key: 'BRNBZ-KY7Y4-FXYUP-X3KHF-XK5CT-FTBKZ' });
 
 
+    this.selectType = option.type;
   },
   methods: {
     bindChange: function bindChange(e) {
@@ -271,6 +272,7 @@ var self;var _default =
         scope: 'scope.userLocation',
         success: function success() {// 允许授权
           self.getLocationInfo();
+          console.log("success");
         },
         fail: function fail() {// 拒绝授权
           self.openConfirm();
@@ -347,22 +349,21 @@ var self;var _default =
 
     },
     backInfo: function backInfo() {
-      // console.log(this.searchKey)
-      // let that=this;
-      // var search_start=JSON.stringify(that.searchKey);
+      if (this.selectType == 'start') {
+        uni.setStorage({
+          key: "start_item",
+          data: this.searchKey });
 
-      // // console.log(this.submitForm);
-      // // console.log(search_start)
-      // uni.navigateTo({
-      // 	// url:'/pages/main/main?backData='+search_start
+      } else
+      if (this.selectType == 'end')
+      {
+        uni.setStorage({
+          key: "end_item",
+          data: this.searchKey });
 
-      // })
-      var pages = getCurrentPages(); //获取所有页面栈实例列表
-      var nowPage = pages[pages.length - 1]; //当前页页面实例
-      var prevPage = pages[pages.length - 2]; //上一页页面实例
-      prevPage.$vm.submitForm.slocation = this.searchKey; //修改上一页data里面的searchVal参数值为1211
-      uni.navigateBack({ //uni.navigateTo跳转的返回，默认1为返回上一级
-        delta: 1 });
+      }
+      uni.switchTab({
+        url: '../main/main' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
