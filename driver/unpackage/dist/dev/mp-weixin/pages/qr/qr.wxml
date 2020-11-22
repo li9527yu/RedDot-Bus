@@ -1,0 +1,1 @@
+<view><button data-event-opts="{{[['tap',[['scan']]]]}}" bindtap="__e">扫码</button>{{''+result+''}}</view>

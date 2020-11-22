@@ -2,7 +2,8 @@
   "pages": [
     "pages/ucenter/login",
     "pages/ucenter/register",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/qr/qr"
   ],
   "subPackages": [],
   "window": {
@@ -24,12 +25,23 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/qr/qr",
+        "iconPath": "static/img/footer/footer-msg.png",
+        "selectedIconPath": "static/img/footer/footer-msg-act.png",
+        "text": "扫码"
+      },
+      {
         "pagePath": "pages/ucenter/login",
         "iconPath": "static/img/footer/footer-member.png",
         "selectedIconPath": "static/img/footer/footer-member-act.png",
         "text": "个人"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": ""
+    }
   },
   "usingComponents": {}
 }

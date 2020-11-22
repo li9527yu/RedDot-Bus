@@ -28,6 +28,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/qr/qr",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "上车扫码",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "black",
@@ -48,6 +57,11 @@
 			"iconPath": "static/img/footer/footer-home.png",
 			"selectedIconPath": "static/img/footer/footer-home-act.png",
 			"text": "首页"
+		}, {
+			"pagePath": "pages/qr/qr",
+			"iconPath": "static/img/footer/footer-msg.png",
+			"selectedIconPath": "static/img/footer/footer-msg-act.png",
+			"text": "扫码"
 		}, {
 			"pagePath": "pages/ucenter/login",
 			"iconPath": "static/img/footer/footer-member.png",
