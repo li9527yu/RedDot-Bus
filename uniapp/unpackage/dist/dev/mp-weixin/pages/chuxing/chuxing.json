@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "乘车",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "tki-qrcode": "/components/tki-qrcode/tki-qrcode"
+  }
 }
